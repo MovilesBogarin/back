@@ -25,7 +25,7 @@ exports.getRecipe = asyncHandler(async (req, res) => {
     }
 });
 
-exports.addRecipe = asyncHandler(async (req, res) => {
+exports.createRecipe = asyncHandler(async (req, res) => {
     const newId = recipes.length + 1;
     recipes.push({
         id: newId,
