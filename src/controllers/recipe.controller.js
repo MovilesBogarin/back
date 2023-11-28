@@ -2,41 +2,30 @@ const asyncHandler = require('express-async-handler');
 const {recipes} = require('../static/static');
 
 exports.getRecipes = asyncHandler(async (req, res) => {
-    const formattedRecipes = recipes.reduce((accum, recipe) => {
-        return [
-            ...accum,
-            {
-                id: recipe.id,
-                name: recipe.name,
-                description: recipe.description,
-            },
-        ];
-    }, []);
     console.log('recetas consultadas');
-    res.status(200).send(formattedRecipes);
+    res.status(200).send(recipes);
 });
 
-exports.getRecipe = asyncHandler(async (req, res) => {
-    const recipeId = parseInt(req.params.id);
-    const recipe = recipes.find(recipe => recipeId === recipe.id);
+exports.updateOrCreateRecipe = asyncHandler(async (req, res) => {
+    const {id, name, description, ingredients, steps} = req.body;
+    const recipe = recipes.find(recipe => recipe.id === id);
     if (recipe) {
-        console.log('receta '+recipeId+' consultada');
+        recipe.name = name;
+        recipe.description = description;
+        recipe.ingredients = ingredients;
+        recipe.steps = steps;
+        console.log('receta '+id+' actualizada');
         res.status(200).send(recipe);
     } else {
-        console.log('receta '+recipeId+' no encontrada');
-        res.status(404).send('Recipe not found');
+        recipes.push({
+            id,
+            name,
+            description,
+            ingredients,
+            steps
+        });
+        const newRecipe = recipes.find(recipe => recipe.id === id);
+        console.log('receta '+id+' creada');
+        res.status(200).send(newRecipe);
     }
-});
-
-exports.createRecipe = asyncHandler(async (req, res) => {
-    const newId = recipes.length + 1;
-    recipes.push({
-        id: newId,
-        name: 'Nueva receta',
-        description: 'Descripción de la nueva receta',
-        ingredients: [],
-        steps: [],
-    });
-    console.log('receta '+newId+' creada');
-    res.status(200).send('ok');
 });
