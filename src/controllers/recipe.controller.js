@@ -2,13 +2,16 @@ const asyncHandler = require('express-async-handler');
 const {recipes} = require('../static/static');
 
 exports.getRecipes = asyncHandler(async (req, res) => {
-    const formattedRecipes = recipes.reduce((recipe) => {
-        return {
-            id: recipe.id,
-            name: recipe.name,
-            description: recipe.description,
-        };
-    });
+    const formattedRecipes = recipes.reduce((accum, recipe) => {
+        return [
+            ...accum,
+            {
+                id: recipe.id,
+                name: recipe.name,
+                description: recipe.description,
+            },
+        ];
+    }, []);
     console.log('recetas consultadas');
     res.status(200).send(formattedRecipes);
 });
