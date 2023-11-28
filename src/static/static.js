@@ -4,10 +4,10 @@ exports.recipes = [
       'name': 'Pasta',
       'description': 'Pasta with tomato sauce',
       'ingredients': [
-        {'name': 'Pasta', 'quantity': 200, 'unit': 'gr'},
-        {'name': 'Tomato', 'quantity': 2, 'unit': 'u'},
-        {'name': 'Salt', 'quantity': 1, 'unit': 'pz'},
-        {'name': 'Pepper', 'quantity': 1, 'unit': 'pz'},
+        {'id': 1, 'name': 'Pasta', 'quantity': 200, 'unit': 'gr'},
+        {'id': 2, 'name': 'Tomato', 'quantity': 2, 'unit': 'u'},
+        {'id': 3, 'name': 'Salt', 'quantity': 1, 'unit': 'pz'},
+        {'id': 4, 'name': 'Pepper', 'quantity': 1, 'unit': 'pz'},
       ],
       'steps': [
         'Boil the water',
@@ -21,10 +21,10 @@ exports.recipes = [
       'name': 'Pizza',
       'description': 'Pizza with tomato sauce',
       'ingredients': [
-        {'name': 'Flour', 'quantity': 200.5, 'unit': 'gr'},
-        {'name': 'Tomato', 'quantity': 2, 'unit': 'u'},
-        {'name': 'Salt', 'quantity': 1, 'unit': 'pz'},
-        {'name': 'Pepperoni', 'quantity': 60, 'unit': 'gr'},
+        {'id': 5, 'name': 'Flour', 'quantity': 200.5, 'unit': 'gr'},
+        {'id': 3, 'name': 'Tomato', 'quantity': 2, 'unit': 'u'},
+        {'id': 4, 'name': 'Salt', 'quantity': 1, 'unit': 'pz'},
+        {'id': 6, 'name': 'Pepperoni', 'quantity': 60, 'unit': 'gr'},
       ],
       'steps': [
         'Make the dough',
