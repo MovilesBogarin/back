@@ -6,7 +6,7 @@ router.get('/', controller.getRecipes);
 
 router.get('/:id', controller.getRecipe);
 
-// router.post('/', controller.createItem);
+router.put('/add', controller.addRecipe);
 
 // router.put('/:id', controller.updateItem);
 

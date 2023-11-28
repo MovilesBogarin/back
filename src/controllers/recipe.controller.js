@@ -24,3 +24,16 @@ exports.getRecipe = asyncHandler(async (req, res) => {
         res.status(404).send('Recipe not found');
     }
 });
+
+exports.addRecipe = asyncHandler(async (req, res) => {
+    const newId = recipes.length + 1;
+    recipes.push({
+        id: newId,
+        name: 'Nueva receta',
+        description: 'Descripción de la nueva receta',
+        ingredients: [],
+        steps: [],
+    });
+    console.log('receta '+newId+' creada');
+    res.status(200).send('ok');
+});
