@@ -4,7 +4,7 @@ const controller = require('../controllers/recipe.controller');
 
 router.get('/', controller.getRecipes);
 
-router.post('/', controller.updateOrCreateRecipe);
+router.post('/create', controller.createRecipe);
 
 // router.put('/:id', controller.updateItem);
 
