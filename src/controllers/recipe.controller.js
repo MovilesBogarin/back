@@ -33,8 +33,7 @@ exports.updateRecipe = asyncHandler(async (req, res) => {
 exports.deleteRecipe = asyncHandler(async (req, res) => {
     try {
         const {id} = req.params;
-        const index = recipes.findIndex(recipe => recipe.id === id);
-        recipes.splice(index, 1);
+        recipes = recipes.filter(recipe => recipe.id !== id);
         console.log('receta '+id+' eliminada correctamente');
         res.status(200).send('OK');
     } catch (error) {
