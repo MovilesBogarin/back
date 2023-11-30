@@ -7,8 +7,8 @@ exports.getRecipes = asyncHandler(async (req, res) => {
 });
 
 exports.createRecipe = asyncHandler(async (req, res) => {
-    const {recipe} = req.body;
-    recipes.push(recipe);
-    console.log('receta '+recipe.id+' creada correctamente');
+    const {id, name, description, ingredients, steps} = req.body;
+    recipes.push({id, name, description, ingredients, steps});
+    console.log('receta '+id+' creada correctamente');
     res.status(200).send('OK');
 });
