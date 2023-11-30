@@ -20,7 +20,8 @@ exports.createRecipe = asyncHandler(async (req, res) => {
 exports.updateRecipe = asyncHandler(async (req, res) => {
     try {
         const {id, name, description, ingredients, steps} = req.body;
-        recipes.push({id, name, description, ingredients, steps});
+        const index = recipes.findIndex(recipe => recipe.id === id);
+        recipes[index] = {id, name, description, ingredients, steps};
         console.log('receta '+id+' actualizada correctamente');
         res.status(200).send('OK');
 
