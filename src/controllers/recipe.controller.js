@@ -6,7 +6,7 @@ exports.getRecipes = asyncHandler(async (req, res) => {
     res.status(200).send(recipes);
 });
 
-exports.create = asyncHandler(async (req, res) => {
+exports.createRecipe = asyncHandler(async (req, res) => {
     const {recipe} = req.body;
     recipes.push(recipe);
     console.log('receta '+recipe.id+' creada correctamente');
