@@ -29,3 +29,15 @@ exports.updateRecipe = asyncHandler(async (req, res) => {
         res.status(400).send(error.message);
     }
 });
+
+exports.deleteRecipe = asyncHandler(async (req, res) => {
+    try {
+        const {id} = req.params;
+        const index = recipes.findIndex(recipe => recipe.id === id);
+        recipes.splice(index, 1);
+        console.log('receta '+id+' eliminada correctamente');
+        res.status(200).send('OK');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});

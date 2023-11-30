@@ -8,6 +8,6 @@ router.post('/create', controller.createRecipe);
 
 router.put('/:id', controller.updateRecipe);
 
-// router.delete('/:id', controller.deleteItem);
+router.delete('/:id', controller.deleteRecipe);
 
 module.exports = router;
