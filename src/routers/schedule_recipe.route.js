@@ -5,7 +5,7 @@ const controller = require('../controllers/schedule_recipe.controller');
 
 router.get('/', controller.getScheduledRecipes);
 router.post('/create', controller.createScheduledRecipe);
-router.put('/update/:id', controller.updateScheduleRecipe);
+router.put('/update', controller.updateScheduleRecipe);
 router.delete('/delete/:id',controller.deleteScheduleRecipe);
 
 

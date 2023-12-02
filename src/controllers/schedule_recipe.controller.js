@@ -21,18 +21,22 @@ exports.createScheduledRecipe = asyncHandler(async (req, res) => {
 
 exports.updateScheduleRecipe = asyncHandler(async (req, res) => {
     try {
-       
-        const {idP} = req.params;
-        const {id_schedule,id_recipe, quantity, date} = req.body;
-        console.log(idP +''+ id_schedule)
-        const index = schedule_recipes.findIndex(schedule => schedule.id === parseInt(idP));
-        schedule_recipes[index] = {id_schedule,id_recipe, quantity, date};
-        console.log(index)
-        console.log('La progrmaacion numero: '+id_schedule+' actualizada correctamente');
-        res.status(200).send('OK');
+  
+        
+        const { id_schedule, id_recipe, quantity, date } = req.body;
+    
+        
+        
+        const index = schedule_recipes.findIndex(schedule => schedule.id_schedule === id_schedule);
 
+        
+        schedule_recipes[index] = { id_schedule, id_recipe, quantity, date };
+
+
+        res.status(200).send('OK');
     } catch (error) {
-        res.status(400).send(error.message);
+        console.error(error);
+        res.status(500).json({ error: 'Valio madressss' });
     }
 });
 
