@@ -34,3 +34,17 @@ exports.recipes = [
       ]
     }
   ];
+exports.schedule_recipes = [
+    {
+    'id_schedule':1,
+      'id_recipe': 1,
+    'quantity': 5,
+    'date': '2023-12-15',
+    },
+    {
+    'id_schedule':2,
+    'id_recipe': 2,
+    'quantity': 10,
+    'date': '2023-12-15',
+    },
+];

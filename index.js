@@ -16,6 +16,9 @@ app.use(bodyParser.json())
 const recipeRouter = require('./src/routers/recipe.route');
 app.use('/recipes', recipeRouter);
 
+const scheduleRecipeRouter = require('./src/routers/schedule_recipe.route');
+app.use('/schedule', scheduleRecipeRouter);
+
 // Default route
 app.get('/', (req, res) => {
   res.send('Hola, bienvenido a mi API')
