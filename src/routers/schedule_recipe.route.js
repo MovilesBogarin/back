@@ -7,7 +7,8 @@ router.get('/', controller.getScheduledRecipes);
 router.post('/create', controller.createScheduledRecipe);
 router.put('/update', controller.updateScheduleRecipe);
 router.delete('/delete/:id',controller.deleteScheduleRecipe);
-
+router.post('/by-date', controller.getScheduledRecipesByDate);
+router.post('/by-range', controller.getScheduledRecipesByDaysRange);
 
 
 /*
