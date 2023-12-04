@@ -1,17 +1,60 @@
+const dayjs = require('dayjs');
 const asyncHandler = require('express-async-handler');
-const {schedule_recipes} = require('../static/static');
+const {schedule_recipes,recipes} = require('../static/static');
 
 exports.getScheduledRecipes = asyncHandler(async (req, res) => {
     console.log('Recetas agendadas .|.');
     res.status(200).send(schedule_recipes);
 });
 
+exports.getScheduledRecipesByDate = asyncHandler(async (req, res) => {
+    try {
+        
+        const {date} = req.body;
+        const scheduled_recipes = schedule_recipes.filter(schedule_recipes => schedule_recipes.date === date);
+        const schedule_recipes_ids = scheduled_recipes.map(schedule_recipes => schedule_recipes.id_recipe);
+        const recipes_filtered = recipes.filter(recipe => schedule_recipes_ids.includes(recipe.id));
+        const scheduled_recipes_with_recipe = scheduled_recipes.map(scheduled_recipe => {
+            const recipe = recipes_filtered.find(recipe => recipe.id === scheduled_recipe.id_recipe);
+            return {...scheduled_recipe, recipe};
+        });
+        res.status(200).send(scheduled_recipes_with_recipe);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});
+
+exports.getScheduledRecipesByDaysRange = asyncHandler(async (req, res) => {
+    try {
+        
+        const {startDate, endDate} = req.body;
+        const dates = [];
+        const start = dayjs(startDate);
+        const end = dayjs(endDate).add(1, 'day');
+        let current = start;
+        while (current.isBefore(end)) {
+            dates.push(current.format('YYYY-MM-DD'));
+            current = current.add(1, 'day');
+        }
+        const scheduled_recipes = schedule_recipes.filter(schedule_recipes => dates.includes(schedule_recipes.date));
+        const schedule_recipes_ids = scheduled_recipes.map(schedule_recipes => schedule_recipes.id_recipe);
+        const recipes_filtered = recipes.filter(recipe => schedule_recipes_ids.includes(recipe.id));
+        const scheduled_recipes_with_recipe = scheduled_recipes.map(scheduled_recipe => {
+            const recipe = recipes_filtered.find(recipe => recipe.id === scheduled_recipe.id_recipe);
+            return {...scheduled_recipe, recipe};
+        });
+        res.status(200).send(scheduled_recipes_with_recipe);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});
+
 
 
 exports.createScheduledRecipe = asyncHandler(async (req, res) => {
     try{
-        const {id_schedule,id_recipe, quantity, date,recipe} = req.body;
-        schedule_recipes.push({id_schedule,id_recipe, quantity, date, recipe});
+        const {id_schedule,id_recipe, quantity, date} = req.body;
+        schedule_recipes.push({id_schedule,id_recipe, quantity, date});
         console.log('receta '+id_recipe+' con fecha: '+date +'guardada exitosamente');
         res.status(200).send('OK');
     } catch (error) {
@@ -23,14 +66,14 @@ exports.updateScheduleRecipe = asyncHandler(async (req, res) => {
     try {
   
         
-        const { id_schedule, id_recipe, quantity, date, recipe } = req.body;
+        const { id_schedule, id_recipe, quantity, date } = req.body;
     
         
         
         const index = schedule_recipes.findIndex(schedule => schedule.id_schedule === id_schedule);
 
         
-        schedule_recipes[index] = { id_schedule, id_recipe, quantity, date, recipe };
+        schedule_recipes[index] = { id_schedule, id_recipe, quantity, date };
 
 
         res.status(200).send('OK');
