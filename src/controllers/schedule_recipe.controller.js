@@ -10,8 +10,8 @@ exports.getScheduledRecipes = asyncHandler(async (req, res) => {
 
 exports.createScheduledRecipe = asyncHandler(async (req, res) => {
     try{
-        const {id_schedule,id_recipe, quantity, date} = req.body;
-        schedule_recipes.push({id_schedule,id_recipe, quantity, date});
+        const {id_schedule,id_recipe, quantity, date, recipe} = req.body;
+        schedule_recipes.push({id_schedule,id_recipe, quantity, date,recipe});
         console.log('receta '+id_recipe+' con fecha: '+date +'guardada exitosamente');
         res.status(200).send('OK');
     } catch (error) {
@@ -23,14 +23,14 @@ exports.updateScheduleRecipe = asyncHandler(async (req, res) => {
     try {
   
         
-        const { id_schedule, id_recipe, quantity, date } = req.body;
+        const { id_schedule, id_recipe, quantity, date, recipe } = req.body;
     
         
         
         const index = schedule_recipes.findIndex(schedule => schedule.id_schedule === id_schedule);
 
         
-        schedule_recipes[index] = { id_schedule, id_recipe, quantity, date };
+        schedule_recipes[index] = { id_schedule, id_recipe, quantity, date, recipe };
 
 
         res.status(200).send('OK');
@@ -55,7 +55,7 @@ exports.deleteScheduleRecipe = asyncHandler(async (req, res) => {
 
 
 /*
-exports.getRecipes = asyncHandler(async (req, res) => {
+exports.getRecipes = asyncHandler(async (req, res) =s> {
     console.log('recetas consultadas');
     res.status(200).send(recipes);
 });
