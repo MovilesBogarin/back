@@ -23,9 +23,9 @@ exports.recipes = [
     description: "Pizza with tomato sauce",
     ingredients: [
       { id: 5, name: "Flour", quantity: 200.5, unit: "gr" },
-      { id: 3, name: "Tomato", quantity: 2, unit: "u" },
-      { id: 4, name: "Salt", quantity: 1, unit: "pz" },
-      { id: 6, name: "Pepperoni", quantity: 60, unit: "gr" },
+      { id: 6, name: "Tomato", quantity: 2, unit: "u" },
+      { id: 7, name: "Salt", quantity: 1, unit: "pz" },
+      { id: 8, name: "Pepperoni", quantity: 60, unit: "gr" },
     ],
     steps: [
       "Make the dough",

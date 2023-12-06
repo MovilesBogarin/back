@@ -132,6 +132,20 @@ exports.deleteScheduleRecipe = asyncHandler(async (req, res) => {
   }
 });
 
+exports.checkIngredient = asyncHandler(async (req, res) => {
+  try {
+    const { schedule_ingredients, bool_value } = req.body;
+    schedule_ingredients.forEach((schedule_ingredient) => {
+      const schedule_index = schedule_recipes.findIndex((schedule) => schedule.id_schedule === schedule_ingredient.id_schedule);
+      const checklist_index = schedule_recipes[schedule_index].checklists.findIndex((checklist) => checklist.ingredientId === schedule_ingredient.ingredientId);
+      schedule_recipes[schedule_index].checklists[checklist_index].checked = bool_value;
+    });
+    res.status(200).send("OK");
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
 /*
 exports.getRecipes = asyncHandler(async (req, res) => {
     console.log('recetas consultadas');
