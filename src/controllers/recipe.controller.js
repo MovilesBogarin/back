@@ -23,7 +23,7 @@ exports.updateRecipe = asyncHandler(async (req, res) => {
         const index = recipes.findIndex(recipe => recipe.id === id);
         recipes[index] = {id, name, description, ingredients, steps};
 
-        const current_scheduled_recipes = schedule_recipes.filter(schedule_recipe => schedule_recipe.id_recipe === id);
+        /*const current_scheduled_recipes = schedule_recipes.filter(schedule_recipe => schedule_recipe.id_recipe === id);
         current_scheduled_recipes.forEach(schedule_recipe => {
             const oldChecklists = schedule_recipe.checklists;
             const newChecklists = ingredients.map((ingredient) => {
@@ -35,7 +35,7 @@ exports.updateRecipe = asyncHandler(async (req, res) => {
                 }
             });
             schedule_recipe.checklists = newChecklists;
-        });
+        });*/
 
         console.log('receta '+id+' actualizada correctamente');
         res.status(200).send('OK');
@@ -51,7 +51,7 @@ exports.deleteRecipe = asyncHandler(async (req, res) => {
         const index = recipes.findIndex(recipe => recipe.id === parseInt(id));
         recipes.splice(index, 1);
 
-        schedule_recipes = schedule_recipes.filter(schedule_recipe => schedule_recipe.id_recipe !== parseInt(id));
+        /*schedule_recipes = schedule_recipes.filter(schedule_recipe => schedule_recipe.id_recipe !== parseInt(id));*/
 
         console.log('receta '+id+' eliminada correctamente');
         res.status(200).send('OK');
