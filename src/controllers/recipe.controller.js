@@ -51,7 +51,7 @@ exports.deleteRecipe = asyncHandler(async (req, res) => {
         const index = recipes.findIndex(recipe => recipe.id === parseInt(id));
         recipes.splice(index, 1);
 
-        /*schedule_recipes = schedule_recipes.filter(schedule_recipe => schedule_recipe.id_recipe !== parseInt(id));*/
+        schedule_recipes = schedule_recipes.filter(schedule_recipe => schedule_recipe.id_recipe !== parseInt(id));
 
         console.log('receta '+id+' eliminada correctamente');
         res.status(200).send('OK');
