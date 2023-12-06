@@ -62,6 +62,12 @@ exports.schedule_recipes = [
         ],
       },
     ],
+    checklists: [
+      { ingredientId: 1, checked: false },
+      { ingredientId: 2, checked: false },
+      { ingredientId: 3, checked: false },
+      { ingredientId: 4, checked: false },
+    ],
   },
   {
     id_schedule: 2,
@@ -87,6 +93,12 @@ exports.schedule_recipes = [
           "Bake it",
         ],
       },
+    ],
+    checklists: [
+      { ingredientId: 5, checked: false },
+      { ingredientId: 3, checked: false },
+      { ingredientId: 4, checked: false },
+      { ingredientId: 6, checked: false },
     ],
   },
 ];
