@@ -71,6 +71,9 @@ exports.createScheduledRecipe = asyncHandler(async (req, res) => {
   try {
     const { id_schedule, id_recipe, quantity, date, checked, recipe } =
       req.body;
+    const checklists = recipe.ingredients.map((ingredient) => {
+      return { ingredientId: ingredient.id, checked: false };
+    });
     schedule_recipes.push({
       id_schedule,
       id_recipe,
@@ -78,6 +81,7 @@ exports.createScheduledRecipe = asyncHandler(async (req, res) => {
       date,
       checked,
       recipe,
+      checklists,
     });
     console.log(
       "receta " + id_recipe + " con fecha: " + date + "guardada exitosamente"
