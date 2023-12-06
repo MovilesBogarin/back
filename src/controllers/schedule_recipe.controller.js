@@ -69,7 +69,7 @@ exports.getScheduledRecipesByDaysRange = asyncHandler(async (req, res) => {
 
 exports.createScheduledRecipe = asyncHandler(async (req, res) => {
   try {
-    const { id_schedule, id_recipe, quantity, date, checked, recipe } =
+    const { id_schedule, id_recipe, quantity, date, checked } =
       req.body;
     const current_recipe = recipes.find((recipe) => recipe.id === id_recipe);
     const checklists = current_recipe.ingredients.map((ingredient) => {
@@ -81,7 +81,6 @@ exports.createScheduledRecipe = asyncHandler(async (req, res) => {
       quantity,
       date,
       checked,
-      recipe,
       checklists,
     });
     console.log(
@@ -95,11 +94,13 @@ exports.createScheduledRecipe = asyncHandler(async (req, res) => {
 
 exports.updateScheduleRecipe = asyncHandler(async (req, res) => {
   try {
-    const { id_schedule, id_recipe, quantity, date, checked, recipe } =
+    const { id_schedule, id_recipe, quantity, date, checked } =
       req.body;
     const index = schedule_recipes.findIndex(
       (schedule) => schedule.id_schedule === id_schedule
     );
+
+    const oldChecklists = schedule_recipes[index].checklists;
 
     schedule_recipes[index] = {
       id_schedule,
@@ -107,7 +108,7 @@ exports.updateScheduleRecipe = asyncHandler(async (req, res) => {
       quantity,
       date,
       checked,
-      recipe,
+      checklists: oldChecklists,
     };
 
     res.status(200).send("OK");
